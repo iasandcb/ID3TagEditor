@@ -7,7 +7,7 @@
 
 import Foundation;
 
-class ID3TagCreator {
+public class ID3TagCreator {
     let id3FramesCreator: ID3FramesCreator
     let id3TagHeaderCreator: ID3TagHeaderCreator
     

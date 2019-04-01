@@ -8,7 +8,7 @@
 import Foundation
 
 public class ID3TagCreatorFactory {
-    static func make() -> ID3TagCreator {
+    public static func make() -> ID3TagCreator {
         let id3FramesCreator = ID3FramesCreator(id3FrameCreatorsChain: ID3FrameCreatorsChainFactory.make())
         let id3TagHeaderCreator = ID3TagHeaderCreator(uInt32ToByteArrayAdapter: UInt32ToByteArrayAdapterUsingUnsafePointer(),
                                                       id3TagConfiguration: ID3TagConfiguration())
