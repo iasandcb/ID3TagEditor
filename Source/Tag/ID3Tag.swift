@@ -27,6 +27,8 @@ public class ID3Tag: CustomDebugStringConvertible {
     public lazy var recordingDateTime: RecordingDateTime? = RecordingDateTime()
     /// The genre of the recording contained in the tag (see `Genre`).
     public var genre: Genre?
+    /// The private frame tag.
+    public var privateFrame: String?
     /// The attached picture related to the audio file contained in the tag (see `AttachedPicture`).
     public lazy var attachedPictures: [AttachedPicture]? = {
         return []
@@ -68,7 +70,8 @@ public class ID3Tag: CustomDebugStringConvertible {
                 recordingDateTime: RecordingDateTime?,
                 genre: Genre?,
                 attachedPictures: [AttachedPicture]?,
-                trackPosition: TrackPositionInSet?) {
+                trackPosition: TrackPositionInSet?,
+                privateFrame: String? = nil) {
         self.properties = TagProperties(version: version, size: 0)
         self.artist = artist
         self.albumArtist = albumArtist
@@ -78,6 +81,7 @@ public class ID3Tag: CustomDebugStringConvertible {
         self.genre = genre
         self.attachedPictures = attachedPictures
         self.trackPosition = trackPosition
+        self.privateFrame = privateFrame
     }
 
     init(version: ID3Version, size: UInt32) {

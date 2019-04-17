@@ -19,6 +19,7 @@ enum FrameType: String, Equatable {
     case Genre = "genre"
     case TrackPosition = "trackPosition"
     case AlbumArtist = "albumArtist"
+    case PrivateFrame = "privateFrame"
     case Invalid = ""
 
     static func ==(lhs: FrameType, rhs: FrameType) -> Bool {

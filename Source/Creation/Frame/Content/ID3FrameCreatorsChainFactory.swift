@@ -23,6 +23,13 @@ class ID3FrameCreatorsChainFactory {
             stringToBytesAdapter: ID3UTF16StringToByteAdapter(paddingAdder: paddingAdder,
                                                               frameConfiguration: frameConfiguration)
         )
+        let privateStringUTF16ContentCreator = ID3PrivateStringFrameCreator(
+            frameContentSizeCalculator: frameContentSizeCalculator,
+            frameFlagsCreator: frameFlagsCreator,
+            stringToBytesAdapter: ID3UTF16StringToByteAdapter(paddingAdder: paddingAdder,
+                                                              frameConfiguration: frameConfiguration)
+        )
+        
         let frameFromStringISO88591ContentCreator = ID3FrameFromStringContentCreator(
             frameContentSizeCalculator: frameContentSizeCalculator,
             frameFlagsCreator: frameFlagsCreator,
@@ -43,6 +50,10 @@ class ID3FrameCreatorsChainFactory {
         )
         let titleFrameCreator = ID3TitleFrameCreator(
             frameCreator: frameFromStringUTF16ContentCreator,
+            id3FrameConfiguration: frameConfiguration
+        )
+        let privateFrameCreator = ID3PrivateFrameCreator(
+            frameCreator: privateStringUTF16ContentCreator,
             id3FrameConfiguration: frameConfiguration
         )
         let attachedPictureFrameCreator = ID3AttachedPicturesFramesCreator(
@@ -81,7 +92,8 @@ class ID3FrameCreatorsChainFactory {
         albumFrameCreator.nextCreator = albumArtistCreator
         albumArtistCreator.nextCreator = artistFrameCreator
         artistFrameCreator.nextCreator = titleFrameCreator
-        titleFrameCreator.nextCreator = yearFrameCreator
+        titleFrameCreator.nextCreator = privateFrameCreator
+        privateFrameCreator.nextCreator = yearFrameCreator
         yearFrameCreator.nextCreator = dayMonthCreator
         dayMonthCreator.nextCreator = hourMinuteCreator
         hourMinuteCreator.nextCreator = recordingDateTimeCreator

@@ -35,7 +35,8 @@ class ID3FrameConfiguration {
         .Album : [UInt8]("TALB".utf8),
         .AttachedPicture : [UInt8]("APIC".utf8),
         .Genre : [UInt8]("TCON".utf8),
-        .TrackPosition : [UInt8]("TRCK".utf8)
+        .TrackPosition : [UInt8]("TRCK".utf8),
+        .PrivateFrame : [UInt8]("PRIV".utf8)
     ]
     private var identifiers: [ID3Version : [FrameType : [UInt8]]] = [
         .version2 : [
@@ -53,7 +54,8 @@ class ID3FrameConfiguration {
         .version3 : [
             .RecordingDayMonth : [UInt8]("TDAT".utf8),
             .RecordingYear : [UInt8]("TYER".utf8),
-            .RecordingHourMinute : [UInt8]("TIME".utf8)
+            .RecordingHourMinute : [UInt8]("TIME".utf8),
+            .PrivateFrame : [UInt8]("PRIV".utf8)
         ],
         .version4 : [
             .RecordingDateTime : [UInt8]("TDRC".utf8),
@@ -66,7 +68,8 @@ class ID3FrameConfiguration {
         "TALB" : .Album,
         "APIC" : .AttachedPicture,
         "TCON" : .Genre,
-        "TRCK" : .TrackPosition
+        "TRCK" : .TrackPosition,
+        "PRIV" : .PrivateFrame
     ]
     private var nameForIdentifier: [ID3Version : [String : FrameType]] = [
         .version2 : [
@@ -84,7 +87,8 @@ class ID3FrameConfiguration {
         .version3 : [
             "TDAT" : .RecordingDayMonth,
             "TYER" : .RecordingYear,
-            "TIME" : .RecordingHourMinute
+            "TIME" : .RecordingHourMinute,
+            "PRIV" : .PrivateFrame
         ],
         .version4 : [
             "TDRC" : .RecordingDateTime
